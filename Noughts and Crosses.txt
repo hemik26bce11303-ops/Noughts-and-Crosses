@@ -1,0 +1,40 @@
+pprint("Aaka Swagat Hai Noughts and Crosses Game Me!")
+print("Yeh lo, kaunsa block kahan hai:")
+box=[str(i) for i in range (1,10)]
+def grid():
+    print(f"\n {box[0]}   |  {box[1]}  |  {box[2]}  " )
+    print("-----|-----|-----")
+    print(f" {box[3]}   |  {box[4]}  |  {box[5]}  " )
+    print("-----|-----|-----")
+    print(f" {box[6]}   |  {box[7]}  |  {box[8]}\n  " )
+def chanceofwin(p1):
+    c1=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    for a,b,c in c1:
+        if box[a]==box[b]==box[c]==p1:
+            return True
+    return False
+def play():
+    p="X"
+    turns=0
+    grid()
+    while turns<9:
+        m1=input(f"Player {p}, Choose position (1-9):")
+        m2=int(m1)-1
+        if m2>=0 and m2<=8:
+            if box[m2]!="X" and box[m2]!="O":
+                box[m2]=p
+                turns=turns+1
+                grid()
+                if chanceofwin(p):
+                    print(f"Player {p} Jeeta Hai 7 Crore Rs!")
+                    return
+                if p=="X":
+                    p="O"
+                else:
+                    p="X"
+            else:
+                print("Yeh position already fill ho chuki hai. Kripya kisi aur vacant block ke liye apply karein.")
+        else:
+            print("Arey bhai, board ke bahar kahan ja rahe ho? 1 se 9 ke andar hi number choose karo!")
+        print("Dono Player Samman Haii!")
+play()
